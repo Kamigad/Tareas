@@ -129,7 +129,20 @@ public class IndexControlador implements Initializable {
         }
     }
 
-    private void limpiarFormulario(){
+    public void eliminarTarea(){
+        var tarea = tareaTabla.getSelectionModel().getSelectedItem();
+        if (tarea != null){
+            logger.info("Tarea ha ser eliminada " + tarea.toString());
+            servicioTarea.eliminarTarea(tarea);
+            mostrarMensaje("Informacion", "Tarea eliminada: " + tarea.getIdTarea());
+            limpiarFormulario();
+            listarTareas();
+        } else {
+            mostrarMensaje("Error", "No se ha seleccionado ninguna tarea");
+        }
+    }
+
+    public void limpiarFormulario(){
         idTareaInterno = null;
         nombreTareaTexto.clear();
         responsableTareaTexto.clear();
