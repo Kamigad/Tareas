@@ -11,13 +11,41 @@
             <Font name="Arial Black" size="25.0" />
          </font>
       </Label>
-      <TableView fx:id="tareaTabla" layoutX="123.0" layoutY="123.0" prefHeight="200.0" prefWidth="354.0">
+      <TableView fx:id="tareaTabla" layoutX="233.0" layoutY="123.0" prefHeight="192.0" prefWidth="352.0">
         <columns>
-          <TableColumn fx:id="idTareaColumna" prefWidth="64.59999084472656" text="ID" />
-          <TableColumn fx:id="nombreTareaColumna" prefWidth="63.399993896484375" text="Tarea" />
-            <TableColumn fx:id="responsableTareaColumna" prefWidth="118.39999389648438" text="Responsable" />
-            <TableColumn fx:id="estatusTareaColumna" prefWidth="75.0" text="Estatus" />
+          <TableColumn fx:id="idTareaColumna" prefWidth="61.0" text="ID" />
+          <TableColumn fx:id="nombreTareaColumna" prefWidth="83.0" text="Tarea" />
+            <TableColumn fx:id="responsableTareaColumna" prefWidth="108.0" text="Responsable" />
+            <TableColumn fx:id="estatusTareaColumna" prefWidth="76.79998779296875" text="Estatus" />
         </columns>
       </TableView>
+      <AnchorPane layoutX="14.0" layoutY="123.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="10.0" layoutY="14.0" text="Tarea" textFill="#457b9d">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="11.0" layoutY="78.0" text="Responsable" textFill="#457b9d">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label layoutX="15.0" layoutY="142.0" text="Estatus" textFill="#457b9d">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <TextField fx:id="nombreTareaTexto" layoutX="3.0" layoutY="32.0" />
+            <TextField fx:id="responsableTareaTexto" layoutX="3.0" layoutY="96.0" />
+            <TextField fx:id="estatusTareaTexto" layoutX="3.0" layoutY="160.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="34.0" layoutY="334.0" prefHeight="49.0" prefWidth="554.0">
+         <children>
+            <Button layoutX="29.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: #1d3557;" text="Agregar" textFill="#f1faee" />
+            <Button layoutX="157.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: #1d3557;" text="Modificar" textFill="#f1faee" />
+            <Button layoutX="277.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: #e63946;" text="Eliminar" textFill="#f1faee" />
+            <Button layoutX="377.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: #ffd60a;" text="Limpiar Formulario" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
