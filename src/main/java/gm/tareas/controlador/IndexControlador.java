@@ -50,6 +50,8 @@ public class IndexControlador implements Initializable {
     @FXML
     private TextField estatusTareaTexto;
 
+    private Integer idTareaInterno;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tareaTabla.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -76,10 +78,14 @@ public class IndexControlador implements Initializable {
             mostrarMensaje("Error Validacion", "Debe proporcionar una tarea");
             nombreTareaTexto.requestFocus();
             return;
-        }
-        else {
+        } else if (idTareaInterno != null) {
+            mostrarMensaje("Error Validacion", "No se puede proporcionar una tarea agregada");
+            limpiarFormulario();
+            return;
+        } else {
             var tarea = new Tarea();
             recolectarDatosFormulario(tarea);
+            tarea.setIdTarea(null);
             servicioTarea.agregarTarea(tarea);
             mostrarMensaje("Informacion", "Tarea agregada");
             limpiarFormulario();
@@ -87,13 +93,44 @@ public class IndexControlador implements Initializable {
         }
     }
 
+    public void cargarTareaFormulario(){
+        var tarea = tareaTabla.getSelectionModel().getSelectedItem();
+        if (tarea != null){
+            idTareaInterno = tarea.getIdTarea();
+            nombreTareaTexto.setText(tarea.getNombreTarea());
+            responsableTareaTexto.setText(tarea.getResponsable());
+            estatusTareaTexto.setText(tarea.getEstatus());
+        }
+    }
+
     private void recolectarDatosFormulario(Tarea tarea){
+        if (idTareaInterno != null)
+            tarea.setIdTarea(idTareaInterno);
         tarea.setNombreTarea(nombreTareaTexto.getText());
         tarea.setResponsable(responsableTareaTexto.getText());
         tarea.setEstatus(estatusTareaTexto.getText());
     }
 
+    public void modificarTarea(){
+        if (idTareaInterno == null){
+            mostrarMensaje("Informacion", "Debe seleccionar una tarea");
+            return;
+        } else if (nombreTareaTexto.getText().isEmpty()) {
+            mostrarMensaje("Error Validacion", "Debe proporcionar una tarea");
+            nombreTareaTexto.requestFocus();
+            return;
+        } else {
+            var tarea = new Tarea();
+            recolectarDatosFormulario(tarea);
+            servicioTarea.agregarTarea(tarea);
+            mostrarMensaje("Informacion", "Tarea modidicada");
+            limpiarFormulario();
+            listarTareas();
+        }
+    }
+
     private void limpiarFormulario(){
+        idTareaInterno = null;
         nombreTareaTexto.clear();
         responsableTareaTexto.clear();
         estatusTareaTexto.clear();
