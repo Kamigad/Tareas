@@ -41,6 +41,15 @@ public class IndexControlador implements Initializable {
 
     private final ObservableList<Tarea> tarealist = FXCollections.observableArrayList();
 
+    @FXML
+    private TextField nombreTareaTexto;
+
+    @FXML
+    private TextField responsableTareaTexto;
+
+    @FXML
+    private TextField estatusTareaTexto;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tareaTabla.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -60,5 +69,42 @@ public class IndexControlador implements Initializable {
         nombreTareaColumna.setCellValueFactory(new PropertyValueFactory<>("nombreTarea"));
         responsableTareaColumna.setCellValueFactory(new PropertyValueFactory<>("responsable"));
         estatusTareaColumna.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+    }
+
+    public void agregarTarea(){
+        if (nombreTareaTexto.getText().isEmpty()){
+            mostrarMensaje("Error Validacion", "Debe proporcionar una tarea");
+            nombreTareaTexto.requestFocus();
+            return;
+        }
+        else {
+            var tarea = new Tarea();
+            recolectarDatosFormulario(tarea);
+            servicioTarea.agregarTarea(tarea);
+            mostrarMensaje("Informacion", "Tarea agregada");
+            limpiarFormulario();
+            listarTareas();
+        }
+    }
+
+    private void recolectarDatosFormulario(Tarea tarea){
+        tarea.setNombreTarea(nombreTareaTexto.getText());
+        tarea.setResponsable(responsableTareaTexto.getText());
+        tarea.setEstatus(estatusTareaTexto.getText());
+    }
+
+    private void limpiarFormulario(){
+        nombreTareaTexto.clear();
+        responsableTareaTexto.clear();
+        estatusTareaTexto.clear();
+
+    }
+
+    private void mostrarMensaje(String titulo, String mensaje){
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 }
