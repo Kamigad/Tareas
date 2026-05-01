@@ -6,10 +6,18 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gm.tareas.controlador.IndexControlador">
    <children>
-      <Label layoutX="234.0" layoutY="50.0" text="Sistema de Tareas">
+      <Label layoutX="172.0" layoutY="46.0" text="Sistema de Tareas" textFill="#cc1919">
          <font>
-            <Font size="18.0" />
+            <Font name="Arial Black" size="25.0" />
          </font>
       </Label>
+      <TableView fx:id="tareaTabla" layoutX="123.0" layoutY="123.0" prefHeight="200.0" prefWidth="354.0">
+        <columns>
+          <TableColumn fx:id="idTareaColumna" prefWidth="64.59999084472656" text="ID" />
+          <TableColumn fx:id="nombreTareaColumna" prefWidth="63.399993896484375" text="Tarea" />
+            <TableColumn fx:id="responsableTareaColumna" prefWidth="118.39999389648438" text="Responsable" />
+            <TableColumn fx:id="estatusTareaColumna" prefWidth="75.0" text="Estatus" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
